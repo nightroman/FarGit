@@ -1,0 +1,56 @@
+TOPIC
+    about_FarGit
+
+SHORT DESCRIPTION
+    Git tools for Far Manager + PowerShellFar
+
+LONG DESCRIPTION
+    Import the module and call its commands in PowerShellFar.
+    Or add some commands to your Far Manager user menu.
+
+    To get the list of available commands, invoke:
+
+        ps: Get-Command -Module FarGit
+
+USER MENU EXAMPLE
+    y:   Branches
+         ps: Import-Module FarGit; Open-FarGitBranch #
+    h:   Show help
+         ps: Import-Module FarGit; Show-FarGitHelp #
+    s:   Show status
+         ps: Import-Module FarGit; Show-FarGitStatus #
+    r:   Go to root
+         ps: Import-Module FarGit; Set-FarGitRoot #
+    e:   Edit config
+         ps: Import-Module FarGit; Edit-FarGitConfig #
+
+    :    Branch
+    {
+    b:   Switch branch
+         ps: Import-Module FarGit; Invoke-FarGitCheckoutBranch #
+    c:   Create branch
+         ps: Import-Module FarGit; Invoke-FarGitBranchCreate #
+    m:   Merge branch
+         ps: Import-Module FarGit; Invoke-FarGitMergeBranch #
+    d:   Delete branch (safe)
+         ps: Import-Module FarGit; Invoke-FarGitBranchDelete #
+    k:   Delete branch (force)
+         ps: Import-Module FarGit; Invoke-FarGitBranchDelete -Force #
+    r:   Rename current branch
+         ps: Import-Module FarGit; Invoke-FarGitBranchRename #
+    }
+
+    :    Stash
+    {
+    a:   Apply stash
+         ps: Import-Module FarGit; Invoke-FarGitStashApply #
+    p:   Pop stash
+         ps: Import-Module FarGit; Invoke-FarGitStashPop #
+    d:   Drop stash
+         ps: Import-Module FarGit; Invoke-FarGitStashDrop #
+    s:   Show stash
+         ps: Import-Module FarGit; Invoke-FarGitStashShow #
+    }
+
+SEE ALSO
+    Release Notes https://github.com/nightroman/FarGit/blob/master/Release-Notes.md
