@@ -7,8 +7,21 @@ $ErrorActionPreference=1
 	Opens panel with git branches.
 
 .Description
+	The current git branch is shown with (*).
 	Remote branches are included as hidden.
-	You can create, delete, rename branches.
+	Keys and actions:
+		[Enter]
+			Checkout the current panel branch.
+			If it is remote then a new local branch is created.
+		[F7]
+			Checkout a new branch from the current git branch.
+			The current panel branch does not matter.
+		[F6]
+			Rename the current panel branch.
+		[F8], [Del]
+			Delete the current panel branch.
+		[CtrlH]
+			Show/hide remote branches.
 #>
 function Open-FarGitBranch {
 	[CmdletBinding()]

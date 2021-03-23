@@ -24,6 +24,32 @@ function FGBranchExplorer_AsCreatePanel($1) {
 	$mode = New-Object FarNet.PanelPlan
 	$mode.Columns = $co, $cn
 	$panel.SetPlan(0, $mode)
+
+	$panel.add_KeyPressed({
+		### [Enter] checkout branch
+		if ($_.Key.Is([FarNet.KeyCode]::Enter) -and !$Far.CommandLine.Length) {
+			$file = $this.CurrentFile
+			if (!$file -or $file.Owner -eq '*') {
+				return
+			}
+			$_.Ignore = $true
+			$Root = $this.Explorer.Data.Root
+			$name = $file.Name
+			if ($name.Contains('/')) {
+				$res = Invoke-Error {git -C $Root checkout -t $name}
+			}
+			else {
+				$res = Invoke-Error {git -C $Root checkout $name}
+			}
+			if ($LASTEXITCODE) {
+				throw $res
+			}
+			$this.Update($true)
+			$this.Redraw()
+			return
+		}
+	})
+
 	$panel
 }
 
