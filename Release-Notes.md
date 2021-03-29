@@ -1,5 +1,11 @@
 # FarGit Release Notes
 
+## v0.1.2
+
+Branch panel
+
+- Amend the check for hidden/remote branches.
+
 ## v0.1.1
 
 Branch panel
