@@ -16,8 +16,8 @@ task version {
 	($script:Version = switch -Regex -File Release-Notes.md {'##\s+v(\d+\.\d+\.\d+)' {$Matches[1]; break} })
 }
 
-# Synopsis: Make the package in z\$ModuleName.
-task package version, {
+# Synopsis: Make the module in z\$ModuleName.
+task module version, {
 	remove z
 	$null = mkdir z\$ModuleName\Scripts
 
@@ -41,8 +41,8 @@ task package version, {
 	Export-PsdXml z\$ModuleName\$ModuleName.psd1 $xml
 }
 
-# Synopsis: Push PSGallery package.
-task pushPSGallery package, {
+# Synopsis: Push PSGallery module.
+task pushPSGallery module, {
 	$NuGetApiKey = Read-Host NuGetApiKey
 	Publish-Module -Path z\$ModuleName -NuGetApiKey $NuGetApiKey
 },

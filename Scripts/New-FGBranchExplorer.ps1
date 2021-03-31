@@ -60,7 +60,7 @@ function FGBranchExplorer_AsGetFiles($1) {
 		throw $res
 	}
 	foreach($line in $res) {
-		if ($line -notmatch '^(\*)?\s*(\S+)') {
+		if ($line -notmatch '^(\*)?\s*(.+)') {
 			New-FarFile -Name "Unexpected branch: '$line'"
 			continue
 		}

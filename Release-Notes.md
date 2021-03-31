@@ -1,5 +1,11 @@
 # FarGit Release Notes
 
+## v0.1.3
+
+Branch panel
+
+- Amend branch name parsing (fix `(no branch)`).
+
 ## v0.1.2
 
 Branch panel
