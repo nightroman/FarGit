@@ -1,5 +1,13 @@
 # FarGit Release Notes
 
+## v0.1.4
+
+Branch panel
+
+- `[F3]` ~ Open gitk with the current panel branch.
+- Do not show `remotes/origin/HEAD -> ...`.
+- Amend remote branch check on `[Enter]`.
+
 ## v0.1.3
 
 Branch panel

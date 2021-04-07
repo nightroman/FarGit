@@ -27,7 +27,7 @@ function FGBranchExplorer_AsCreatePanel($1) {
 
 	$panel.add_KeyPressed({
 		### [Enter] checkout branch
-		if ($_.Key.Is([FarNet.KeyCode]::Enter) -and !$Far.CommandLine.Length) {
+		if ($_.Key.Is([FarNet.KeyCode]::Enter)) {
 			$file = $this.CurrentFile
 			if (!$file -or $file.Owner -eq '*') {
 				return
@@ -35,7 +35,7 @@ function FGBranchExplorer_AsCreatePanel($1) {
 			$_.Ignore = $true
 			$Root = $this.Explorer.Data.Root
 			$name = $file.Name
-			if ($name.Contains('/')) {
+			if ($name.StartsWith('remotes/')) {
 				$res = Invoke-Error {git -C $Root checkout -t $name}
 			}
 			else {
@@ -46,6 +46,18 @@ function FGBranchExplorer_AsCreatePanel($1) {
 			}
 			$this.Update($true)
 			$this.Redraw()
+			return
+		}
+		### [F3] gitk branch
+		if ($_.Key.Is([FarNet.KeyCode]::F3)) {
+			$file = $this.CurrentFile
+			if (!$file) {
+				return
+			}
+			$_.Ignore = $true
+			Push-Location -LiteralPath $this.Explorer.Data.Root
+			gitk $file.Name
+			Pop-Location
 			return
 		}
 	})
@@ -60,6 +72,9 @@ function FGBranchExplorer_AsGetFiles($1) {
 		throw $res
 	}
 	foreach($line in $res) {
+		if ($line.Contains('->')) {
+			continue
+		}
 		if ($line -notmatch '^(\*)?\s*(.+)') {
 			New-FarFile -Name "Unexpected branch: '$line'"
 			continue

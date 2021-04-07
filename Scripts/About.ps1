@@ -16,6 +16,8 @@ $ErrorActionPreference=1
 		[F7]
 			Checkout a new branch from the current git branch.
 			The current panel branch does not matter.
+		[F3]
+			Open gitk with the current panel branch.
 		[F6]
 			Rename the current panel branch.
 		[F8], [Del]
