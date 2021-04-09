@@ -13,8 +13,10 @@ LONG DESCRIPTION
         ps: Get-Command -Module FarGit
 
 USER MENU EXAMPLE
-    y:   Branches
+    y:   Branch panel
          ps: Import-Module FarGit; Open-FarGitBranch #
+    z:   Stash panel
+         ps: Import-Module FarGit; Open-FarGitStash #
     h:   Show help
          ps: Import-Module FarGit; Show-FarGitHelp #
     s:   Show status
@@ -44,12 +46,10 @@ USER MENU EXAMPLE
     {
     a:   Apply stash
          ps: Import-Module FarGit; Invoke-FarGitStashApply #
-    p:   Pop stash
-         ps: Import-Module FarGit; Invoke-FarGitStashPop #
     d:   Drop stash
          ps: Import-Module FarGit; Invoke-FarGitStashDrop #
-    s:   Show stash
-         ps: Import-Module FarGit; Invoke-FarGitStashShow #
+    p:   Pop stash
+         ps: Import-Module FarGit; Invoke-FarGitStashPop #
     }
 
 SEE ALSO

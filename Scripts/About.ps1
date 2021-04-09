@@ -1,6 +1,7 @@
 $ErrorActionPreference=1
 . $PSScriptRoot\Basic.ps1
 . $PSScriptRoot\New-FGBranchExplorer.ps1
+. $PSScriptRoot\New-FGStashExplorer.ps1
 
 <#
 .Synopsis
@@ -21,7 +22,7 @@ $ErrorActionPreference=1
 		[F6]
 			Rename the current panel branch.
 		[F8], [Del]
-			Delete the current panel branch.
+			Delete selected branches.
 		[CtrlH]
 			Show/hide remote branches.
 #>
@@ -36,6 +37,37 @@ function Open-FarGitBranch {
 		throw $Root
 	}
 	(New-FGBranchExplorer $Root).OpenPanel()
+}
+
+<#
+.Synopsis
+	Opens panel with git stashes.
+
+.Description
+	Keys and actions:
+		[Enter]
+			Apply the current stash with a choice:
+			- [Apply] apply and keep the stash.
+			- [Pop] apply and remove the stash.
+		[F7]
+			Stash current changes with a choice [Tracked] or [+Untracked]
+			and the input box for the optional stash message.
+		[F3]
+			Open gitk to view the current stash.
+		[F8], [Del]
+			Delete selected stashes.
+#>
+function Open-FarGitStash {
+	[CmdletBinding()]
+	param(
+		[string]$Path = '.'
+	)
+	$Path = $PSCmdlet.GetUnresolvedProviderPathFromPSPath($Path)
+	$Root = Invoke-Error {git -C $Path rev-parse --show-toplevel}
+	if ($LASTEXITCODE) {
+		throw $Root
+	}
+	(New-FGStashExplorer $Root).OpenPanel()
 }
 
 <#
@@ -334,27 +366,6 @@ function Invoke-FarGitStashPop {
 
 		if ($stash = Select-StashName 'Pop stash') {
 			Invoke-Native {git stash pop $stash}
-		}
-	}
-	catch {
-		Show-Error
-	}
-}
-
-<#
-.Synopsis
-	Invokes git stash show.
-
-.Description
-	The command shows the stash list.
-	Select a stash to show its patch details.
-#>
-function Invoke-FarGitStashShow {
-	try {
-		Assert-Git
-
-		if ($stash = Select-StashName 'Show stash') {
-			Invoke-Native {git stash show -p $stash}
 		}
 	}
 	catch {

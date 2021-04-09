@@ -116,7 +116,7 @@ function FGBranchExplorer_AsDeleteFiles($1, $2) {
 	if ($2.UI) {
 		$text = @"
 $($2.Files.Count) branch(es):
-$($2.Files[0..9] -join "`n")
+$($2.Files -join "`n")
 "@
 		if (Show-FarMessage $text Delete YesNo -LeftAligned) {
 			$2.Result = 'Ignore'

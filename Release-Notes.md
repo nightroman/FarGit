@@ -1,5 +1,13 @@
 # FarGit Release Notes
 
+## v0.2.0
+
+Added the new command `Open-FarGitStash` which opens the panel with stashes.
+You can view `[F3]`, create `[F7]`, delete `[Del]`/`[F8]`, and apply `[Enter]` stashes.
+
+Removed the command `Invoke-FarGitStashShow`.
+It is replaced with more useful stash panel.
+
 ## v0.1.4
 
 Branch panel
