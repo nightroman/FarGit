@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.2.1
+
+Show remote branches as normal (not hidden) files, #1.
+
 ## v0.2.0
 
 Added the new command `Open-FarGitStash` which opens the panel with stashes.

@@ -80,12 +80,8 @@ function FGBranchExplorer_AsGetFiles($1) {
 			continue
 		}
 		$name = $matches[2]
-		$isHidden = $name.StartsWith('remotes/')
 		if ($matches[1]) {
 			New-FarFile -Name $name -Owner *
-		}
-		elseif ($isHidden) {
-			New-FarFile -Name $name -Attributes Hidden
 		}
 		else {
 			New-FarFile -Name $name

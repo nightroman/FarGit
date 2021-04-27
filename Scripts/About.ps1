@@ -9,7 +9,6 @@ $ErrorActionPreference=1
 
 .Description
 	The current git branch is shown with (*).
-	Remote branches are included as hidden.
 	Keys and actions:
 		[Enter]
 			Checkout the current panel branch.
@@ -17,14 +16,13 @@ $ErrorActionPreference=1
 		[F7]
 			Checkout a new branch from the current git branch.
 			The current panel branch does not matter.
+			Enter a new branch name in the dialog.
 		[F3]
 			Open gitk with the current panel branch.
 		[F6]
 			Rename the current panel branch.
 		[F8], [Del]
 			Delete selected branches.
-		[CtrlH]
-			Show/hide remote branches.
 #>
 function Open-FarGitBranch {
 	[CmdletBinding()]
