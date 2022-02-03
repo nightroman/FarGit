@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.3.0
+
+Delete selected remote branches as well as local.
+
 ## v0.2.1
 
 Show remote branches as normal (not hidden) files, #1.

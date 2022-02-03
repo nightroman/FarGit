@@ -79,8 +79,8 @@ function FGBranchExplorer_AsGetFiles($1) {
 			New-FarFile -Name "Unexpected branch: '$line'"
 			continue
 		}
-		$name = $matches[2]
-		if ($matches[1]) {
+		$name = $Matches[2]
+		if ($Matches[1]) {
 			New-FarFile -Name $name -Owner *
 		}
 		else {
@@ -124,8 +124,16 @@ $($2.Files -join "`n")
 	$Root = $1.Data.Root
 	foreach($file in $2.Files) {
 		$branch = $file.Name
+		$remote = ''
+		if ($branch -match '^remotes/(?<remote>[^/]+)/(?<branch>.+)') {
+			$branch = $Matches.branch
+			$remote = $Matches.remote
+		}
 		$res = Invoke-Error {
-			if ($2.Force) {
+			if ($remote) {
+				git -C $Root push $remote --delete $branch
+			}
+			elseif ($2.Force) {
 				git -C $Root branch -D $branch
 			}
 			else {

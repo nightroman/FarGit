@@ -22,7 +22,8 @@ $ErrorActionPreference=1
 		[F6]
 			Rename the current panel branch.
 		[F8], [Del]
-			Delete selected branches.
+			Delete selected local and remote branches.
+			Use [Shift..] to delete not merged local branches.
 #>
 function Open-FarGitBranch {
 	[CmdletBinding()]
