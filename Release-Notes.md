@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.4.0
+
+Show commit messages for local branches in the description column.
+
 ## v0.3.0
 
 Delete selected remote branches as well as local.

@@ -13,44 +13,42 @@ LONG DESCRIPTION
         ps: Get-Command -Module FarGit
 
 USER MENU EXAMPLE
-    y:   Branch panel
-         ps: Import-Module FarGit; Open-FarGitBranch #
-    z:   Stash panel
+    Branch panel
+        ps: Import-Module FarGit; Open-FarGitBranch #
+    Stash panel
          ps: Import-Module FarGit; Open-FarGitStash #
-    h:   Show help
-         ps: Import-Module FarGit; Show-FarGitHelp #
-    s:   Show status
+    Show help
+        ps: Import-Module FarGit; Show-FarGitHelp #
+    Show status
          ps: Import-Module FarGit; Show-FarGitStatus #
-    r:   Go to root
+    Go to root
          ps: Import-Module FarGit; Set-FarGitRoot #
-    e:   Edit config
+    Edit config
          ps: Import-Module FarGit; Edit-FarGitConfig #
 
-    :    Branch
-    {
-    b:   Switch branch
-         ps: Import-Module FarGit; Invoke-FarGitCheckoutBranch #
-    c:   Create branch
-         ps: Import-Module FarGit; Invoke-FarGitBranchCreate #
-    m:   Merge branch
-         ps: Import-Module FarGit; Invoke-FarGitMergeBranch #
-    d:   Delete branch (safe)
-         ps: Import-Module FarGit; Invoke-FarGitBranchDelete #
-    k:   Delete branch (force)
-         ps: Import-Module FarGit; Invoke-FarGitBranchDelete -Force #
-    r:   Rename current branch
-         ps: Import-Module FarGit; Invoke-FarGitBranchRename #
-    }
+    BRANCH
 
-    :    Stash
-    {
-    a:   Apply stash
+    Switch branch
+         ps: Import-Module FarGit; Invoke-FarGitCheckoutBranch #
+    Create branch
+         ps: Import-Module FarGit; Invoke-FarGitBranchCreate #
+    Merge branch
+         ps: Import-Module FarGit; Invoke-FarGitMergeBranch #
+    Delete branch (safe)
+         ps: Import-Module FarGit; Invoke-FarGitBranchDelete #
+    Delete branch (force)
+         ps: Import-Module FarGit; Invoke-FarGitBranchDelete -Force #
+    Rename current branch
+         ps: Import-Module FarGit; Invoke-FarGitBranchRename #
+
+    STASH
+
+    Apply stash
          ps: Import-Module FarGit; Invoke-FarGitStashApply #
-    d:   Drop stash
+    Drop stash
          ps: Import-Module FarGit; Invoke-FarGitStashDrop #
-    p:   Pop stash
+    Pop stash
          ps: Import-Module FarGit; Invoke-FarGitStashPop #
-    }
 
 SEE ALSO
     Release Notes https://github.com/nightroman/FarGit/blob/master/Release-Notes.md

@@ -19,10 +19,11 @@ function FGBranchExplorer_AsCreatePanel($1) {
 	$panel.ViewMode = 0
 	$panel.SortMode = 'Unsorted'
 
-	$cn = New-Object FarNet.SetColumn -Property @{ Kind = "N"; Name = "Name" }
 	$co = New-Object FarNet.SetColumn -Property @{ Kind = "O"; Name = "Current"; Width = 1 }
+	$cn = New-Object FarNet.SetColumn -Property @{ Kind = "N"; Name = "Branch" }
+	$cd = New-Object FarNet.SetColumn -Property @{ Kind = "Z"; Name = "Commit" }
 	$mode = New-Object FarNet.PanelPlan
-	$mode.Columns = $co, $cn
+	$mode.Columns = $co, $cn, $cd
 	$panel.SetPlan(0, $mode)
 
 	$panel.add_KeyPressed({
@@ -80,11 +81,12 @@ function FGBranchExplorer_AsGetFiles($1) {
 			continue
 		}
 		$name = $Matches[2]
+		$description = if ($name -notlike 'remotes/*') { Invoke-Error {git -C $Root log --pretty=format:%s -1 $name} }
 		if ($Matches[1]) {
-			New-FarFile -Name $name -Owner *
+			New-FarFile -Name $name -Owner * -Description $description
 		}
 		else {
-			New-FarFile -Name $name
+			New-FarFile -Name $name -Description $description
 		}
 	}
 }
