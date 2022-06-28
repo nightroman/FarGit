@@ -1,5 +1,19 @@
 # FarGit Release Notes
 
+## v0.4.1
+
+Get branch panel commit messages in the background.
+
+Branch panel current branch:
+
+- set current in the panel on opening
+- show with `*` (clean) or `>` (changes)
+
+Branch panel modes:
+
+- `[Ctrl0]` default
+- `[Ctrl9]` full screen
+
 ## v0.4.0
 
 Show commit messages for local branches in the description column.

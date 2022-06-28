@@ -8,7 +8,7 @@ $ErrorActionPreference=1
 	Opens panel with git branches.
 
 .Description
-	The current git branch is shown with (*).
+	The current branch is shown with `*` (clean) or `>` (changes).
 	Keys and actions:
 		[Enter]
 			Checkout the current panel branch.
@@ -24,6 +24,10 @@ $ErrorActionPreference=1
 		[F8], [Del]
 			Delete selected local and remote branches.
 			Use [Shift..] to delete not merged local branches.
+		[Ctrl0]
+			Default panel mode.
+		[Ctrl9]
+			Full screen panel mode.
 #>
 function Open-FarGitBranch {
 	[CmdletBinding()]

@@ -1,7 +1,7 @@
 
 # Invokes the native command and outputs errors.
 function Invoke-Error($Command__) {
-	$ErrorActionPreference=2
+	$ErrorActionPreference = 'Ignore'
 	$OutputEncoding__ = [Console]::OutputEncoding
 	[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 	& $Command__ 2>&1
