@@ -3,7 +3,7 @@ Import-Module FarGit
 $RepoRoot = "C:\TEMP\FarGitTestRepo"
 
 function Invoke-Git($Command__) {
-	$ErrorActionPreference = 'Ignore'
+	$ErrorActionPreference = 'Continue'
 	$res = & $Command__ 2>&1
 	if ($LASTEXITCODE) {
 		throw $res

@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.4.2
+
+Fix missed/empty error messages from git.
+
 ## v0.4.1
 
 Get branch panel commit messages in the background.

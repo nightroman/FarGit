@@ -1,4 +1,11 @@
-﻿
+﻿<#
+.Synopsis
+	Tests branch panel basics.
+
+.Notes
+	It may have errors so it clears them.
+#>
+
 # New branch to create, use a name sorted after 'main', e.g. 'test_*'.
 # Use new names because a test may fail and leave old branches.
 # If a test finishes then all branches but main are deleted.
@@ -129,6 +136,7 @@ job {
 ### exit and restore
 
 job {
+	$global:Error.Clear()
 	$Far.Panel.Close()
 	$Far.Panel.CurrentDirectory = $Data.CurrentDirectory
 }
