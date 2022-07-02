@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.4.3
+
+Remove deleted/renamed branch descriptions from cache.
+
 ## v0.4.2
 
 Fix missed/empty error messages from git.

@@ -1,28 +1,28 @@
 
 function New-FGStashExplorer($Root) {
-	New-Object PowerShellFar.PowerExplorer c3e2ab2d-2c19-48cf-af15-81d7646030b4 -Property @{
-		Data = @{
-			Root = $Root
-		}
-		Functions = 'CreateFile, DeleteFiles'
-		AsCreateFile = {FGStashExplorer_AsCreateFile @args}
-		AsCreatePanel = {FGStashExplorer_AsCreatePanel @args}
-		AsDeleteFiles = {FGStashExplorer_AsDeleteFiles @args}
-		AsGetFiles = {FGStashExplorer_AsGetFiles @args}
+	$Explorer = [PowerShellFar.PowerExplorer]::new("c3e2ab2d-2c19-48cf-af15-81d7646030b4")
+	$Explorer.Data = @{
+		Root = $Root
 	}
+	$Explorer.Functions = 'CreateFile, DeleteFiles'
+	$Explorer.AsCreateFile = {FGStashExplorer_AsCreateFile @args}
+	$Explorer.AsCreatePanel = {FGStashExplorer_AsCreatePanel @args}
+	$Explorer.AsDeleteFiles = {FGStashExplorer_AsDeleteFiles @args}
+	$Explorer.AsGetFiles = {FGStashExplorer_AsGetFiles @args}
+	$Explorer
 }
 
-function FGStashExplorer_AsCreatePanel($1) {
-	$panel = [FarNet.Panel]$1
-	$panel.Title = "Stashes: $($1.Data.Root)"
+function FGStashExplorer_AsCreatePanel($Explorer) {
+	$panel = [FarNet.Panel]$Explorer
+	$panel.Title = "Stashes: $($Explorer.Data.Root)"
 	$panel.ViewMode = 0
 	$panel.SortMode = 'Unsorted'
 
-	$cn = New-Object FarNet.SetColumn -Property @{ Kind = "N"; Name = "Name"; Width = 10 }
-	$cd = New-Object FarNet.SetColumn -Property @{ Kind = "Z"; Name = "Description" }
-	$mode = New-Object FarNet.PanelPlan
-	$mode.Columns = $cn, $cd
-	$panel.SetPlan(0, $mode)
+	$cn = [FarNet.SetColumn]@{ Kind = "N"; Name = "Name"; Width = 10 }
+	$cd = [FarNet.SetColumn]@{ Kind = "Z"; Name = "Description" }
+	$plan0 = [FarNet.PanelPlan]::new()
+	$plan0.Columns = $cn, $cd
+	$panel.SetPlan(0, $plan0)
 
 	$panel.add_KeyPressed({
 		### [Enter] apply/pop
@@ -71,8 +71,8 @@ function FGStashExplorer_AsCreatePanel($1) {
 	$panel
 }
 
-function FGStashExplorer_AsGetFiles($1) {
-	$Root = $1.Data.Root
+function FGStashExplorer_AsGetFiles($Explorer) {
+	$Root = $Explorer.Data.Root
 	$res = Invoke-Error {git -C $Root stash list}
 	if ($LASTEXITCODE) {
 		throw $res
@@ -88,8 +88,8 @@ function FGStashExplorer_AsGetFiles($1) {
 	}
 }
 
-function FGStashExplorer_AsCreateFile($1, $2) {
-	$Root = $1.Data.Root
+function FGStashExplorer_AsCreateFile($Explorer, $2) {
+	$Root = $Explorer.Data.Root
 	$status = Invoke-Error {git -C $Root status -s}
 	if ($LASTEXITCODE) {
 		throw $status
@@ -122,7 +122,7 @@ function FGStashExplorer_AsCreateFile($1, $2) {
 	}
 }
 
-function FGStashExplorer_AsDeleteFiles($1, $2) {
+function FGStashExplorer_AsDeleteFiles($Explorer, $2) {
 	# ask
 	if ($2.UI) {
 		$text = @"
@@ -136,7 +136,7 @@ $($(foreach($_ in $2.Files) {"$($_.Name) : $($_.Description)"}) -join "`n")
 	}
 
 	# delete
-	$Root = $1.Data.Root
+	$Root = $Explorer.Data.Root
 	foreach($file in $2.Files) {
 		$name = $file.Name
 		$res = Invoke-Error {git -C $Root stash drop $name}

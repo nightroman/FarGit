@@ -1,18 +1,18 @@
 
 function New-FGBranchExplorer($Root) {
-	New-Object PowerShellFar.PowerExplorer 71ebb500-c8e1-4544-827a-8456c3611f8e -Property @{
-		Data = @{
-			Root = $Root
-			SetCurrentOnce = $true
-			FileDescriptions = @{}
-		}
-		Functions = 'CreateFile, DeleteFiles, RenameFile'
-		AsCreateFile = {FGBranchExplorer_AsCreateFile @args}
-		AsCreatePanel = {FGBranchExplorer_AsCreatePanel @args}
-		AsDeleteFiles = {FGBranchExplorer_AsDeleteFiles @args}
-		AsGetFiles = {FGBranchExplorer_AsGetFiles @args}
-		AsRenameFile = {FGBranchExplorer_AsRenameFile @args}
+	$Explorer = [PowerShellFar.PowerExplorer]::new("71ebb500-c8e1-4544-827a-8456c3611f8e")
+	$Explorer.Data = @{
+		Root = $Root
+		SetCurrentOnce = $true
+		FileDescriptions = @{}
 	}
+	$Explorer.Functions = 'CreateFile, DeleteFiles, RenameFile'
+	$Explorer.AsCreateFile = {FGBranchExplorer_AsCreateFile @args}
+	$Explorer.AsCreatePanel = {FGBranchExplorer_AsCreatePanel @args}
+	$Explorer.AsDeleteFiles = {FGBranchExplorer_AsDeleteFiles @args}
+	$Explorer.AsGetFiles = {FGBranchExplorer_AsGetFiles @args}
+	$Explorer.AsRenameFile = {FGBranchExplorer_AsRenameFile @args}
+	$Explorer
 }
 
 function FGBranchExplorer_AsCreatePanel($Explorer) {
@@ -55,6 +55,7 @@ function FGBranchExplorer_AsCreatePanel($Explorer) {
 			if ($LASTEXITCODE) {
 				throw $res
 			}
+
 			$this.Update($true)
 			$this.Redraw()
 			return
@@ -191,6 +192,7 @@ $($2.Files -join "`n")
 			else {
 				git -C $Explorer.Data.Root branch -d $branch
 			}
+			$Explorer.Data.FileDescriptions.Remove($branch)
 		}
 		if ($LASTEXITCODE) {
 			$2.Result = 'Incomplete'
@@ -216,5 +218,6 @@ function FGBranchExplorer_AsRenameFile($Explorer, $2) {
 	}
 	else {
 		$2.PostName = $newName
+		$Explorer.Data.FileDescriptions.Remove($oldName)
 	}
 }
