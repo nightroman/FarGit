@@ -1,5 +1,9 @@
 # FarGit Release Notes
 
+## v0.4.4
+
+Deprecated and replaced by https://github.com/nightroman/FarNet/tree/main/GitKit
+
 ## v0.4.3
 
 Remove deleted/renamed branch descriptions from cache.

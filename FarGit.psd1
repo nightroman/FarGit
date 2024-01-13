@@ -5,11 +5,10 @@
 	Author = 'Roman Kuzmin'
     Copyright = '(c) Roman Kuzmin'
 	CompanyName = 'https://github.com/nightroman'
-	Description = 'Git tools for Far Manager + PowerShellFar'
+	Description = 'Deprecated and replaced by https://github.com/nightroman/FarNet/tree/main/GitKit'
 
 	PrivateData = @{
 		PSData = @{
-			Tags = @('Git', 'FarManager', 'PowerShellFar')
 			ProjectUri = 'https://github.com/nightroman/FarGit'
 			LicenseUri = 'https://github.com/nightroman/FarGit/blob/main/LICENSE'
 			ReleaseNotes = 'https://github.com/nightroman/FarGit/blob/main/Release-Notes.md'

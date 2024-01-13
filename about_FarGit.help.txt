@@ -2,9 +2,11 @@ TOPIC
     about_FarGit
 
 SHORT DESCRIPTION
-    Git tools for Far Manager + PowerShellFar
+    Deprecated and replaced by https://github.com/nightroman/FarNet/tree/main/GitKit
 
 LONG DESCRIPTION
+    Deprecated and replaced by https://github.com/nightroman/FarNet/tree/main/GitKit
+
     Import the module and call its commands in PowerShellFar.
     Or add some commands to your Far Manager user menu.
 
